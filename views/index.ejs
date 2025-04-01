@@ -1,45 +1,63 @@
 <%- include('partials/header.ejs'); -%>
 
-  <div class="box" id="heading">
-    <h1>
-      <%= listTitle %>
-    </h1>
+<div class="col-lg-6 col-xxl-4 my-5 mx-auto">
+  <div class="d-grid align-items-center justify-content-center">
+    <form action="/add" method="post">
+      <button class="btn btn-primary" type="submit">New Book Note</button>
+    </form>
   </div>
-  <div class="box">
-    <% for(let item of listItems){%>
-      <div class="item">
-        <form action="/delete" method="post">
-          <input type="checkbox" onchange="this.form.submit()" name="deleteItemId" value="<%= item.id %>">
-        </form>
+  <div class="d-grid align-items-right justify-content-right">
 
-        <p id="title<%=item.id%>">
-          <%= item.title %>
-        </p>
-
-        <form class="edit" action="/edit" method="post">
-          <input type="hidden" name="updatedItemId" value="<%= item.id %>">
-          <input id="input<%=item.id%>" type="text" name="updatedItemTitle" value="<%= item.title %>" autocomplete="off"
-            autofocus="true" hidden="true" />
-          <button id="done<%=item.id%>" class="edit" type="submit" hidden><img class="icon"
-              src="/assets/icons/check-solid.svg" alt="tick image"></button>
-        </form>
-        <button id="edit<%=item.id%>" class="edit" onclick="handler('<%=item.id%>')"><img class="icon"
-            src="/assets/icons/pencil-solid.svg" alt="pencil image"></button>
-      </div>
-      <% } %>
-
-        <form class="item" action="/add" method="post">
-          <input type="text" name="newItem" placeholder="New Item" autocomplete="off" autofocus="true" />
-          <button class="add" type="submit" name="list" value=<%=listTitle %> >+</button>
-        </form>
+    <div class="dropdown position-fixed top-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (dark)">
+      
+        Sort By
+      
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text" style="">
+        <li>
+          <a class="dropdown-item d-flex align-items-center" href="/title">Title</a>     
+        </li>
+        <li>
+          <a class="dropdown-item d-flex align-items-center" href="/date">Date </a>     
+        </li>
+        <li>
+          <a class="dropdown-item d-flex align-items-center" href="/">Rating</a>     
+        </li>
+      </ul>
+    </div>
   </div>
+</div>
+<div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+  <div class="list-group">
+    <% for(let bookNote of rBookNotes){
+      
+      
+      var d = new Date(bookNote.date);
+      
+      %>
+      <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+        <img src="https://covers.openlibrary.org/b/isbn/<%=bookNote.isbn%>-L.jpg" alt="bookCover" width="100" height="150" class="flex-shrink-0">
+        <div class="d-flex gap-2 w-100 justify-content-between">
+          <div>
+            <h6 class="mb-0"><%= bookNote.title%> by <%= bookNote.author%></h6>
+            <p class="mb-0 opacity-75"><%= bookNote.notes%></p>
+            <div class="mt-4">
+              <form action="/" method="post">
+                <input type="hidden" name="bookNote" value="<%= JSON.stringify(bookNote) %>">
+                <button class="btn btn-outline-primary" name="editBookNote" type="submit">Edit Book Note</button>
+                <button class="btn btn-outline-danger" name="deleteBookNote" formaction="/delete" type="submit">Delete Book Note</button>
+              </form>
+            </div>
+          </div>
+          <small class="opacity-50 text-nowrap">Date Read: <%=d.toLocaleDateString()%></small>
+          <small class="opacity-50 text-nowrap"> Rating: <%= bookNote.rating%>/10</small>
+        </div>
 
-  <script>
-    function handler(id) {
-      document.getElementById("title" + id).setAttribute("hidden", true)
-      document.getElementById("edit" + id).setAttribute("hidden", true)
-      document.getElementById("done" + id).removeAttribute("hidden")
-      document.getElementById("input" + id).removeAttribute("hidden")
-    }
-  </script>
+      </a>
+
+    <%} %>
+    
+  </div>
+</div>
   <%- include('partials/footer.ejs'); -%>

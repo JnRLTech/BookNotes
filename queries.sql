@@ -1,7 +1,9 @@
-CREATE TABLE book_notes (
-	id SERIAL PRIMARY KEY,
-	book_id INTEGER REFERENCES books(id),
-	user_id INTEGER REFERENCES user(id)
+
+CREATE TABLE books
+(
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    author VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE users(
@@ -17,3 +19,8 @@ CREATE TABLE book_notes (
 	book_id INTEGER REFERENCES books(id),
 	user_id INTEGER REFERENCES users(id)
 );
+
+SELECT *
+FROM book_notes 
+JOIN books ON book_id = books.id
+JOIN users ON user_id = users.id;

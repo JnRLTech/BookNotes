@@ -1,0 +1,28 @@
+<!-- Step 3 Add Header -->
+<%- include("partials/header.ejs")  %>
+
+<h1>Edit Book Note Post</h1>
+<% if (locals.rbookNote != undefined)
+    { %>
+      <form action="/edit" method="POST">
+      
+        <div class="input-group input-group-lg">
+          <h3><%=rbookNote.title%></h3>
+
+          <p>Rating:</p>
+          <input type="text" name="updatedBookRating" value="<%= rbookNote.rating %>">
+        </div>
+        <div class="form-floating">
+          
+          <textarea class="form-control" id="updatedBookNotes" name="updatedBookNotes" style="height: 400px"><%=rbookNote.notes%></textarea>
+        </div>
+        <input type="hidden" name="updatedBookId" value="<%=rbookNote.book_id%>" />
+        <input type="hidden" name="updatedBookTitle" value="<%=rbookNote.title%>" />
+          
+        <input class="btn btn-primary" type="submit" value="Update Note">
+      
+      </form>
+      
+    <%} %>
+
+<%- include("partials/footer.ejs")  %>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Book Note</title>
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/new.css">
+</head>
+
+<body>
+  <h1>Add a new Book Note</h1>
+  <form action="/new" method="post">
+    <p>Book Title:</p>
+    <input type="text" name="bookTitle">
+    <p>Book Author:</p>
+    <input type="text" name="bookAuthor">
+    <p>Book ISBN:</p>
+    <input type="text" name="bookISBN">
+    <p>Book Note:</p>
+    <input type="text" name="bookNotes">
+    <p>Book Rating:</p>
+    <input type="text" name="bookRating">
+   
+    <div class="spacer"></div>
+
+    <button type="submit">Add</button>
+  </form>
+</body>
+
+</html>
