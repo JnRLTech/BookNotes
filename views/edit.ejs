@@ -1,28 +1,51 @@
 <!-- Step 3 Add Header -->
 <%- include("partials/header.ejs")  %>
 
-<h1>Edit Book Note Post</h1>
+<div class="d-grid align-items-center justify-content-center">
+  <h1>Edit Book Note Post</h1>
+</div
+
+<div class="container align-items-center justify-content-center">
 <% if (locals.rbookNote != undefined)
     { %>
       <form action="/edit" method="POST">
       
-        <div class="input-group input-group-lg">
+        <div class="input-group input-group-lg mt-3">
           <h3><%=rbookNote.title%></h3>
-
-          <p>Rating:</p>
-          <input type="text" name="updatedBookRating" value="<%= rbookNote.rating %>">
         </div>
-        <div class="form-floating">
-          
+
+        <div class="input-group input-group-lg mt-3">
+          <label class="input-group-text" for="updatedBookRating">Rating</label>
+          <select class="form-select" id="updatedBookRating" name="updatedBookRating">
+            <option selected><%= rbookNote.rating %></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        
+        <div class="form-floating  input-group input-group-lg mt-3">
+          <span class="input-group-text">Book Notes</span>
           <textarea class="form-control" id="updatedBookNotes" name="updatedBookNotes" style="height: 400px"><%=rbookNote.notes%></textarea>
         </div>
+    
         <input type="hidden" name="updatedBookId" value="<%=rbookNote.book_id%>" />
         <input type="hidden" name="updatedBookTitle" value="<%=rbookNote.title%>" />
-          
-        <input class="btn btn-primary" type="submit" value="Update Note">
+
+        <div class="d-grid align-items-center justify-content-center mt-5">  
+         <input class="btn btn-primary" type="submit" value="Update Note">
+        </div>
       
       </form>
       
     <%} %>
+</div>
 
 <%- include("partials/footer.ejs")  %>

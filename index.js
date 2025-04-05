@@ -88,14 +88,14 @@ app.post("/new", async (req, res) => {
     
     const result1 = await db.query(
       "SELECT id FROM books WHERE LOWER(title) LIKE '%' || $1 || '%';",
-      [title.toLowerCase()]);
-      
-      bookId = result1.rows[0].id;
+      [title.toLowerCase()]);   
 
     if(result1.rows.length === 0){ // Only add a new book if it doesn't already exist
 
       const result2 = await db.query("INSERT INTO books (title, author, isbn) VALUES ($1,$2,$3) RETURNING id", [title,author,isbn]);
       bookId = result2.rows[0].id;
+    }else {
+      bookId = result1.rows[0].id; // use the id of the book that was found
     }
 
     try{

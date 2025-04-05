@@ -1,32 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/header.ejs'); -%>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Book Note</title>
-  <link rel="stylesheet" href="./styles/main.css">
-  <link rel="stylesheet" href="./styles/new.css">
-</head>
+  <div class="d-grid align-items-center justify-content-center">
+    <h1>Add a new Book Note</h1>
+  </div>
+  <div class="container align-items-center justify-content-center">
 
-<body>
-  <h1>Add a new Book Note</h1>
-  <form action="/new" method="post">
-    <p>Book Title:</p>
-    <input type="text" name="bookTitle">
-    <p>Book Author:</p>
-    <input type="text" name="bookAuthor">
-    <p>Book ISBN:</p>
-    <input type="text" name="bookISBN">
-    <p>Book Note:</p>
-    <input type="text" name="bookNotes">
-    <p>Book Rating:</p>
-    <input type="text" name="bookRating">
-   
-    <div class="spacer"></div>
+    <form action="/new" method="post">
+      <div class="input-group input-group-lg mt-3">
+        <span class="input-group-text" id="bookTitle">Book Title</span>
+        <input type="text" class="form-control" name="bookTitle" aria-label="Book Title" aria-describedby="bookTitle">
+      </div>
+      <div class="input-group input-group-lg mt-3">
+        <span class="input-group-text" id="bookAuthor">Book Author</span>
+        <input type="text" class="form-control" name="bookAuthor" aria-label="Sizing example input" aria-describedby="bookAuthor">
+      </div>
+      <div class="input-group input-group-lg mt-3">
+        <span class="input-group-text" id="isbn">ISBN</span>
+        <input type="text" class="form-control" name="bookISBN" aria-label="isbn" aria-describedby="isbn">
+      </div>
+      <div class="input-group input-group-lg mt-3">
+        <span class="input-group-text">Book Notes</span>
+        <textarea class="form-control" name="bookNotes" aria-label="Book Notes"></textarea>
+      </div>
+      <div class="input-group input-group-lg mt-3">
+        <label class="input-group-text" for="bookRating">Rating</label>
+        <select class="form-select" id="bookRating" name="bookRating">
+          <option selected>Choose...</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="d-grid align-items-center justify-content-center mt-5">
+        <button class="btn btn-primary" type="submit">Add</button>
+      </div>
+    </form>
 
-    <button type="submit">Add</button>
-  </form>
-</body>
+  </div>
 
-</html>
+<%- include('partials/footer.ejs'); -%>
