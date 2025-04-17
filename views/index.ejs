@@ -2,19 +2,20 @@
 
 <div class="col-lg-6 col-xxl-4 my-5 mx-auto">
   <div class="d-grid align-items-center justify-content-center">
+    <h1 class="mb-4"><%= rBookNotes[0].name %>'s Notes </h1>
     <form action="/add" method="post">
-      <button class="btn btn-primary" type="submit">New Book Note</button>
+      <button class="btn btn-primary ms-5" type="submit">New Book Note</button>
     </form>
   </div>
   <div class="d-grid align-items-right justify-content-right">
-
     <div class="dropdown position-fixed top-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <a class="btn btn-light btn-outline-dark" href="/logout" role="button">Log Out</a>
       <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (dark)">
       
         Sort By
       
       </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text" style="">
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
         <li>
           <a class="dropdown-item d-flex align-items-center" href="/title">Title</a>     
         </li>
@@ -22,7 +23,7 @@
           <a class="dropdown-item d-flex align-items-center" href="/date">Date </a>     
         </li>
         <li>
-          <a class="dropdown-item d-flex align-items-center" href="/">Rating</a>     
+          <a class="dropdown-item d-flex align-items-center" href="/rating">Rating</a>     
         </li>
       </ul>
     </div>
